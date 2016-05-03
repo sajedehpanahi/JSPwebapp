@@ -52,13 +52,4 @@ public class GrantCondition {
 
     public GrantCondition() {
     }
-
-    //TODO delete this constructor (this is for easy testing)
-    public GrantCondition(String grantName, String minDuration, String maxDuration, BigDecimal minAmount, BigDecimal maxAmount) {
-        this.grantName = grantName;
-        this.minDuration = minDuration;
-        this.maxDuration = maxDuration;
-        this.minAmount = minAmount;
-        this.maxAmount = maxAmount;
-    }
 }
