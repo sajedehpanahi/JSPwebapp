@@ -24,12 +24,13 @@
                             <td>شماره مشتری</td>
                             <td><input type="text" name="customerNumber"></td>
                             <td><input class="button" type="submit" value="بازیابی"></td>
+                            <td><a href="real-customer-managment.jsp" class="form">بازگشت به صفحه قبل</a></td>
                         </tr>
                     </table>
                 </form>
                 <br><hr><br>
                 <c:choose>
-                    <c:when test="false">
+                    <c:when test="true">
                         <form> <%--TODO create new loan file--%>
                             <table>
                                 <tr>

@@ -18,18 +18,19 @@
             <div class="box-top"></div>
             <div class="box-in">
                 <br>
-                <form action="create-grant-condition.jsp">
+                <form action="create-grant-condition.jsp" method="post">
                     <table>
                         <tr>
                             <td>نام نوع تسهیلات</td>
-                            <td><input type="text" name="loanType"></td>
+                            <td><input type="text" name="loanType" required="required" oninvalid="this.setCustomValidity('وارد کردن نوع تسهیلات الزامی است')"/></td>
                         </tr>
                         <tr>
                             <td>نرخ سود</td>
-                            <td><input type="text" name="interestRate"></td>
+                            <td><input type="text" name="interestRate" required="required" oninvalid="this.setCustomValidity('وارد کردن نرخ سود الزامی است')"/></td>
                         </tr>
                     </table>
                     <input class="button" type="submit" value="اضافه کردن شرط اعطا">
+                    <a href="real-customer-managment.jsp" class="button">بازگشت به صفحه قبل</a>
                 </form>
             </div>
         </div>

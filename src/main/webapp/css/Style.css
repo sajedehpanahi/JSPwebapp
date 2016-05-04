@@ -14,6 +14,7 @@ div {
 html { height: 100%; font-size: 80% }
 
 body {
+    font-family: farsiFont;
     height: 100%;
     background-color: #006666;
     direction:rtl;
@@ -158,7 +159,7 @@ ul.main-list li{
     background-color: #008080;
     border: solid #008080;
     color: white;
-    padding: 5px 0 5px 0;
+    padding: 5px 5px 5px 5px ;
     margin: 10px 10px;
     text-align: center;
     text-decoration: none;
@@ -180,7 +181,7 @@ ul.main-list li{
     border:solid;
     border-color: #008080;
     color: white;
-    padding: 15px 20px;
+    padding: 5px 5px 5px 5px;
     margin: 10px 10px;
     text-align: center;
     text-decoration: none;
