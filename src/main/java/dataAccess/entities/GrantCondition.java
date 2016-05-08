@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 public class GrantCondition {
 
     private String grantName;
-    private String minDuration;
-    private String maxDuration;
+    private int minDuration;
+    private int maxDuration;
     private BigDecimal minAmount;
     private BigDecimal maxAmount;
 
@@ -18,19 +18,19 @@ public class GrantCondition {
         this.grantName = grantName;
     }
 
-    public String getMinDuration() {
+    public int getMinDuration() {
         return minDuration;
     }
 
-    public void setMinDuration(String minDuration) {
+    public void setMinDuration(int minDuration) {
         this.minDuration = minDuration;
     }
 
-    public String getMaxDuration() {
+    public int getMaxDuration() {
         return maxDuration;
     }
 
-    public void setMaxDuration(String maxDuration) {
+    public void setMaxDuration(int maxDuration) {
         this.maxDuration = maxDuration;
     }
 

@@ -25,7 +25,7 @@
             </div>
             <div class="box-bottom"></div>
         </div>
-        <div class="cleaner">&nbsp</div>
+        <div class="cleaner">&nbsp;</div>
     </div>
 </div>
 

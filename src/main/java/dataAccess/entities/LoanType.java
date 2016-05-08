@@ -6,7 +6,7 @@ import java.util.List;
 public class LoanType {
 
     private String loanName;
-    private int interestRate;
+    private float interestRate;
     private List<GrantCondition> grantConditions = new ArrayList<GrantCondition>();
 
     public String getLoanName() {
@@ -17,11 +17,11 @@ public class LoanType {
         this.loanName = loanName;
     }
 
-    public int getInterestRate() {
+    public float getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(int interestRate) {
+    public void setInterestRate(float interestRate) {
         this.interestRate = interestRate;
     }
 

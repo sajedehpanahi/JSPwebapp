@@ -6,7 +6,7 @@ public class LoanFile {
 
     private String customerNumber;
     private LoanType loanType;
-    private String duration;
+    private int duration;
     private BigDecimal amount;
 
     public LoanFile() {
@@ -28,11 +28,11 @@ public class LoanFile {
         this.loanType = loanType;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
