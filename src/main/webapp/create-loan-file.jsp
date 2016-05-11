@@ -34,12 +34,12 @@
                         <form> <%--TODO create new loan file--%>
                             <table>
                                 <tr>
-                                    <td> نام و نام خانوادگی مشتری</td>
+                                    <td> نام و نام خانوادگی مشتری*</td>
                                     <td><input type="text" readonly value="ساجده پناهی" name="duration"></td>
                                         <%--TODO get customer number from lower layer--%>
                                 </tr>
                                 <tr>
-                                    <td> نوع تسهیلات</td>
+                                    <td> نوع تسهیلات*</td>
                                     <td>
                                         <select class="my-dropdown"
                                                 name="loanType"> <%--TODO get loan types from lower layer--%>
@@ -51,11 +51,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td> مدت قرارداد</td>
+                                    <td> مدت قرارداد*</td>
                                     <td><input type="text" name="duration"></td>
                                 </tr>
                                 <tr>
-                                    <td>مبلغ قرارداد</td>
+                                    <td>مبلغ قرارداد*</td>
                                     <td><input type="text" name="amount"></td>
                                 </tr>
                             </table>

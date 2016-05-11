@@ -1,4 +1,4 @@
-package dataAccess.beans;
+package dataAccess.entities;
 
 import java.util.ArrayList;
 import java.util.List;

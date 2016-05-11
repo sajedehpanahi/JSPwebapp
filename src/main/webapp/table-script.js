@@ -6,6 +6,7 @@ function addRow() {
     var minAmount = document.getElementById("minAmount");
     var maxAmount = document.getElementById("maxAmount");
 
+
     var table = document.getElementById("grantConditionsTable");
     var rowCount = table.rows.length;
     if (rowCount == 0) {
@@ -23,6 +24,12 @@ function addRow() {
     row.insertCell(5).innerHTML = maxAmount.value;
     row.insertCell(6).innerHTML = '<button class="button" onClick="deleteRow(this)">حذف</button>';
     addFooter();
+    
+    document.getElementById("conditionName").value = "";
+    document.getElementById("minDuration").value = "";
+    document.getElementById("maxDuration").value = "";
+    document.getElementById("minAmount").value = "";
+    document.getElementById("maxAmount").value = "";
 }
 function  addHeader() {
     var table = document.getElementById("grantConditionsTable");
