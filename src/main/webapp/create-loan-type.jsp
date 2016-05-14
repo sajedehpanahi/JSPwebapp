@@ -22,7 +22,7 @@
                     <table>
                         <tr>
                             <td>نام نوع تسهیلات*</td>
-                            <td><input type="text" name="loanType" required="required" oninvalid="this.setCustomValidity('وارد کردن نوع تسهیلات الزامی است')" return="false" /></td>
+                            <td><input type="text" name="loanType" required="required" oninvalid="setCustomValidity('وارد کردن نوع تسهیلات الزامی است')"  /></td>
                         </tr>
                         <tr>
                             <td>نرخ سود*</td>
