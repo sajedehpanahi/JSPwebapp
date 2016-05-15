@@ -2,8 +2,8 @@
 @font-face {
     font-family: farsiFont;
     src:
-        url(/css/fonts/yekan.otf),
-        url(/css/fonts/yekan.ttf);
+            url(/css/fonts/yekan.otf),
+            url(/css/fonts/yekan.ttf);
 }
 
 div {
@@ -208,6 +208,8 @@ ul.main-list li{
     vertical-align: middle;
     padding: 15px;
     border-bottom: 1px solid #ddd;
+    width: 50px;
+    align-content: center;
 }
 .result-table td
 {

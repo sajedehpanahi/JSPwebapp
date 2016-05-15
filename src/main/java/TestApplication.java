@@ -8,7 +8,9 @@ import util.HibernateUtil;
 import util.LoggerUtil;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class TestApplication {
     public static void main(String[] args) {
@@ -50,8 +52,8 @@ public class TestApplication {
 //        }
 //        finally {
 //        }
-//        RealCustomerEntity realCustomer = new RealCustomerEntity("a","s","d","f","g");
-//        CRUD.saveRealCustomer(realCustomer);
+//         RealCustomerEntity realCustomer = new RealCustomerEntity("1371-02-01","ننن","پناهی","مککم","بلی");
+//          CRUD.saveRealCustomer(realCustomer);
 //        LoggerUtil.getLogger().error("real customer saved via CRUD class!");
 //        RealCustomerEntity retrievedRealCustomer = null;
 //        try {
@@ -64,13 +66,23 @@ public class TestApplication {
 //        realCustomer.setFirstName("sajede");
 //        realCustomer.setLastName("panahi");
 //        CRUD.updateRealCustomer(retrievedRealCustomer);
-//        System.out.println("real customer updated!");
+//        System.out.println("real customer updated!");*/
 
-        CRUD.deleteRealCustomerById(18);
+        CRUD.deleteRealCustomerById(3);
         //System.out.println("real customer deleted!");
 
-        //realCustomer.setCustomerId(18);
+       // realCustomer.setCustomerId(16);
         //CRUD.deleteRealCustomer(realCustomer);
         //System.out.println("real customer deleted!");
+/*
+        try {
+            ArrayList list = (ArrayList)CRUD.retrieveRealCustomer(realCustomer);
+            for(Object entity : list){
+                RealCustomerEntity t = (RealCustomerEntity)entity;
+                System.out.println(t.getFirstName()+ " " + t.getFatherName());
+            }
+        } catch (DataNotFoundException e) {
+            e.printStackTrace();
+        }*/
     }
 }

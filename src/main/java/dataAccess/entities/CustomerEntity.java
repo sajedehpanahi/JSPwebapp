@@ -1,7 +1,5 @@
 package dataAccess.entities;
 
-import dataAccess.entities.MyEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,16 +11,16 @@ public class CustomerEntity implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "CUSTOMER_ID", nullable = false, insertable = false, updatable = false, unique = true)
-    private int customerId;
+    private Integer customerId;
 
     public CustomerEntity(){
 
     }
-    public long getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
