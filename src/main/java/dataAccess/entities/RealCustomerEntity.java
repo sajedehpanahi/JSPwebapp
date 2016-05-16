@@ -34,7 +34,8 @@ public class RealCustomerEntity extends CustomerEntity implements Serializable {
 //    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     private Set<LoanFileEntity> loanFiles = new HashSet<LoanFileEntity>(0);
 
-    public RealCustomerEntity(String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode) {
+    public RealCustomerEntity(Integer customerId, String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode) {
+        this.setCustomerId(customerId);
         this.firstName = firstName;
         this.lastName = lastName;
         this.fatherName = fatherName;

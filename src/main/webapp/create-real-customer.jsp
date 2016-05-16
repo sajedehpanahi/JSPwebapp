@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
    <%-- <meta http-equiv="content-type" content="text/html; charset=utf-8" charset="utf-8"/>--%>
-    <link href="../css/Style.css" rel="stylesheet">
+    <link href="css/Style.css" rel="stylesheet">
     <title>ثبت اطلاعات مشتری</title>
 </head>
 <body>
@@ -44,7 +44,7 @@
                         </tr>
                     </table>
                     <input type="submit" class="button" value="ثبت اطلاعات">
-                    <a href="../real-customer-managment.jsp" class="form">بازگشت به صفحه قبل</a>
+                    <a href="real-customer-managment.jsp" class="form">بازگشت به صفحه قبل</a>
                 </form>
             </div>
             <div class="box-bottom"></div>

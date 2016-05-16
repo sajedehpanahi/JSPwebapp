@@ -15,26 +15,13 @@ import java.util.List;
 
 public class RealCustomerController extends HttpServlet {
 
-    private void creteRealCustomer(HttpServletRequest request) {
-
-        RealCustomerObject realCustomerObject = new RealCustomerObject();
-        realCustomerObject.setFirstName(request.getParameter("firstName"));
-        realCustomerObject.setLastName(request.getParameter("lastName"));
-        realCustomerObject.setFatherName(request.getParameter("fatherName"));
-        realCustomerObject.setDateOfBirth(request.getParameter("dateOfBirth"));
-        realCustomerObject.setNationalCode(request.getParameter("nationalCode"));
-
-        CRUD.saveRealCustomer(realCustomerObject.toRealCustomerEntity());
-    }
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
         if ("create".equalsIgnoreCase(action)){
-            creteRealCustomer(request);
+            creteRealCustomer(request, response);
         }
         if ("retrieve".equalsIgnoreCase(action)){
             retrieveRealCustomer(request, response);
@@ -45,22 +32,69 @@ public class RealCustomerController extends HttpServlet {
         if ("delete".equalsIgnoreCase(action)){
             deleteRealCustomer(request, response);
         }
-        if ("update".equalsIgnoreCase(action)){
-            retrieveRealCustomer(request, response);
+        if ("confirm-update".equalsIgnoreCase(action)){
+            confirmUpdateRealCustomer(request, response);
         }
+        if ("update".equalsIgnoreCase(action)){
+            updateRealCustomer(request, response);
+        }
+    }
 
+    private void confirmUpdateRealCustomer(HttpServletRequest request, HttpServletResponse response) {
+        RealCustomerObject realCustomerObject = new RealCustomerObject();
+        realCustomerObject.setCustomerId(Integer.parseInt(request.getParameter("customerId")));
+        realCustomerObject.setFirstName(request.getParameter("firstName"));
+        realCustomerObject.setLastName(request.getParameter("lastName"));
+        realCustomerObject.setFatherName(request.getParameter("fatherName"));
+        realCustomerObject.setDateOfBirth(request.getParameter("dateOfBirth"));
+        realCustomerObject.setNationalCode(request.getParameter("nationalCode"));
+        CRUD.updateRealCustomer(realCustomerObject.toRealCustomerEntity());
+        try {
+            request.setAttribute("header","عملیات موفق");
+            request.setAttribute("text","اطلاعات مشتری با شماره " + realCustomerObject.getCustomerId() + " با موفقیت به روز شد.");
+            request.setAttribute("url","retrieve-real-customer.jsp");
+            getServletConfig().getServletContext().getRequestDispatcher("/info-page.jsp").forward(request,response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateRealCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int customerId = Integer.parseInt(request.getParameter("id"));
+        try {
+            RealCustomerObject realCustomerObject = RealCustomerObject.convert(CRUD.retrieveRealCustomerById(customerId));
+            request.setAttribute("realCustomerObject",realCustomerObject);
+            getServletConfig().getServletContext().getRequestDispatcher("/update-real-customer.jsp").forward(request,response);
+        } catch (ServletException | IOException | DataNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void creteRealCustomer(HttpServletRequest request, HttpServletResponse response) {
+
+        RealCustomerObject realCustomerObject = new RealCustomerObject();
+        realCustomerObject.setFirstName(request.getParameter("firstName"));
+        realCustomerObject.setLastName(request.getParameter("lastName"));
+        realCustomerObject.setFatherName(request.getParameter("fatherName"));
+        realCustomerObject.setDateOfBirth(request.getParameter("dateOfBirth"));
+        realCustomerObject.setNationalCode(request.getParameter("nationalCode"));
+
+        CRUD.saveRealCustomer(realCustomerObject.toRealCustomerEntity());
+
+        request.setAttribute("header","عملیات موفق");
+        request.setAttribute("text","مشتری با موفقیت ثبت شد.");
+        request.setAttribute("url","create-real-customer.jsp");
+        try {
+            getServletConfig().getServletContext().getRequestDispatcher("/info-page.jsp").forward(request,response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void confirmDeleteRealCustomer(HttpServletRequest request, HttpServletResponse response) {
         int customerId = Integer.parseInt(request.getParameter("id"));
         try {
-            /*RealCustomerObject  realCustomerObject =RealCustomerObject.convert(CRUD.retrieveRealCustomerById(customerId));
-            request.setAttribute("customerId",realCustomerObject.getCustomerId());
-            request.setAttribute("firstName",realCustomerObject.getFirstName());
-            request.setAttribute("lastName",realCustomerObject.getLastName());
-            request.setAttribute("fatherName",realCustomerObject.getFatherName());
-            request.setAttribute("dateOfBirth",realCustomerObject.getDateOfBirth());
-            request.setAttribute("nationalCode",realCustomerObject.getNationalCode());*/
             request.setAttribute("realCustomerObject",RealCustomerObject.convert(CRUD.retrieveRealCustomerById(customerId)));
             getServletConfig().getServletContext().getRequestDispatcher("/confirm-delete-real-customer.jsp").forward(request,response);
         } catch (ServletException | IOException | DataNotFoundException e) {
@@ -71,9 +105,10 @@ public class RealCustomerController extends HttpServlet {
     private void deleteRealCustomer(HttpServletRequest request, HttpServletResponse response) {
         int customerId = Integer.parseInt(request.getParameter("id"));
         CRUD.deleteRealCustomerById(customerId);
-        request.setAttribute("header","خطا در ثبت اطلاعات مشتری");
-        request.setAttribute("subject","عملیات موفق");
+        request.setAttribute("header","عملیات موفق");
         request.setAttribute("text","مشتری با شماره ی"+ customerId + " با موفقیت حذف شد.");
+        request.setAttribute("url","retrieve-real-customer.jsp");
+
         try {
             getServletConfig().getServletContext().getRequestDispatcher("/info-page.jsp").forward(request,response);
         } catch (ServletException | IOException e) {

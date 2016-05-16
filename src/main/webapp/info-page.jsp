@@ -15,9 +15,11 @@
             <div class=box-top></div>
             <div class=box-in>
                 <br>
-                <h2><%=request.getAttribute("subject")%></h2>
+                <h2><%=request.getAttribute("header")%></h2>
                 <br>
                 <p><%=request.getAttribute("text")%></p>
+                <br>
+                <a href="<%=request.getAttribute("url")%>" class="form">بازگشت </a>
             </div>
             <div class=box-bottom></div>
         </div>

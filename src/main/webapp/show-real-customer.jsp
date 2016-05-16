@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset=UTF-8>
-    <link href=../css/Style.css rel=stylesheet>
+    <link href=css/Style.css rel=stylesheet>
     <title>جستجوی مشتری</title>
 </head>
 <body>

@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="../css/Style.css" rel="stylesheet">
+    <link href="css/Style.css" rel="stylesheet">
     <title>جستجوی مشتری</title>
 </head>
 <body>
@@ -47,7 +47,7 @@
                         </tr>
                     </table>
                     <input type="submit" class="button" value="جستجو">
-                    <a href="../real-customer-managment.jsp" class="form">بازگشت به صفحه قبل</a>
+                    <a href="real-customer-managment.jsp" class="form">بازگشت به صفحه قبل</a>
                 </form>
             </div>
             <div class="box-bottom"></div>

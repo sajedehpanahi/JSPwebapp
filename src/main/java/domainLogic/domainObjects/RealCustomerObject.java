@@ -74,7 +74,7 @@ public class RealCustomerObject {
     }
 
     public RealCustomerEntity toRealCustomerEntity(){
-        return new RealCustomerEntity(this.firstName, this.lastName, this.fatherName,this.dateOfBirth,this.nationalCode);
+        return new RealCustomerEntity(this.customerId, this.firstName, this.lastName, this.fatherName,this.dateOfBirth,this.nationalCode);
     }
 
     public static RealCustomerObject convert(RealCustomerEntity realCustomerEntity) {

@@ -3,7 +3,7 @@
 <html lang="fa">
 <head>
     <%-- <meta http-equiv="content-type" content="text/html; charset=utf-8" charset="utf-8"/>--%>
-    <link href="../css/Style.css" rel="stylesheet">
+    <link href="css/Style.css" rel="stylesheet">
     <title>تایید حذف مشتری</title>
 </head>
 <body>
@@ -17,13 +17,12 @@
         <div class="box">
             <div class="box-top"></div>
             <div class="box-in">
-                <br>
                 <p>آیا از حذف مشتری با مشخصات زیر اطمینان دارید؟</p>
-                <br>
                 <form action="RealCustomerController" method="get">
                     <input type="hidden" name="action" value="delete">
-                    <input type="hidden" name="id" value="<%=request.getAttribute("customerId")%>">
                     <%RealCustomerObject realCustomerObject = (RealCustomerObject)request.getAttribute("realCustomerObject"); %>
+                    <input type="hidden" name="id" value="<%=realCustomerObject.getCustomerId()%>">
+
                     <table>
                         <tr>
                             <td> شماره مشتری </td>
@@ -50,9 +49,11 @@
                             <td><%=realCustomerObject.getNationalCode()%></td>
                         </tr>
                     </table>
-                    <input type="submit" class="button" value="ثبت اطلاعات">
-                    <a href="../retrieve-real-customer.jsp" class="form">بازگشت به صفحه قبل</a>
+                    <input type="submit" class="button" value="بله">
+                    <a href="retrieve-real-customer.jsp" class="form">بازگشت </a>
                 </form>
+                <br>
+                <br>
             </div>
             <div class="box-bottom"></div>
         </div>
