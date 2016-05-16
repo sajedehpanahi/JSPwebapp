@@ -1,6 +1,3 @@
-<%@ page import="domainLogic.domainObjects.RealCustomerObject" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="domainLogic.RealCustomerController" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

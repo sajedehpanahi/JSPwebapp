@@ -18,7 +18,8 @@
             <div class="box-top"></div>
             <div class="box-in">
                 <br>
-                <form> <%--TODO retrive customer number in retrive customer number jsp--%>
+                <form action="LoanFileController"> <%--TODO retrive customer number in retrive customer number jsp--%>
+                    <input type="text" name="action" value="retrieve-customer" hidden>
                     <table>
                         <tr>
                             <td>شماره مشتری</td>

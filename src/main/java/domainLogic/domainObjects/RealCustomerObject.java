@@ -60,6 +60,17 @@ public class RealCustomerObject {
         this.customerId = customerId;
     }
 
+    public RealCustomerObject() {
+    }
+
+    public RealCustomerObject(String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fatherName = fatherName;
+        this.dateOfBirth = dateOfBirth;
+        this.nationalCode = nationalCode;
+    }
+
     /*
     public Set<LoanFileEntity> getLoanFiles() {
         return loanFiles;
