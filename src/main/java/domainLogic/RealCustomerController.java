@@ -103,13 +103,13 @@ public class RealCustomerController extends HttpServlet {
     }
 
     private void deleteRealCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int customerId = Integer.parseInt(request.getParameter("id"));
-        CRUD.deleteRealCustomerById(customerId);
-        request.setAttribute("header","عملیات موفق");
-        request.setAttribute("text","مشتری با شماره ی"+ customerId + " با موفقیت حذف شد.");
-        request.setAttribute("url","retrieve-real-customer.jsp");
 
         try {
+            int customerId = Integer.parseInt(request.getParameter("id"));
+            CRUD.deleteRealCustomerById(customerId);
+            request.setAttribute("header","عملیات موفق");
+            request.setAttribute("text","مشتری با شماره ی"+ customerId + " با موفقیت حذف شد.");
+            request.setAttribute("url","retrieve-real-customer.jsp");
             getServletConfig().getServletContext().getRequestDispatcher("/info-page.jsp").forward(request,response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();

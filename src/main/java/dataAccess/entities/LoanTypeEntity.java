@@ -29,10 +29,9 @@ public class LoanTypeEntity implements Serializable {
     public LoanTypeEntity(){
 
     }
-    public LoanTypeEntity(String loanName, float interestRate, HashSet<GrantConditionEntity> grantConditions) {
+    public LoanTypeEntity(String loanName, float interestRate) {
         this.loanName = loanName;
         this.interestRate = interestRate;
-        this.grantConditions = grantConditions;
     }
 
     public String getLoanName() {

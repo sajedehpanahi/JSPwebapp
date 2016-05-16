@@ -17,11 +17,11 @@ function addRow() {
     rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     row.insertCell(0).innerHTML = (rowCount).toString();
-    row.insertCell(1).innerHTML = conditionName.value;
-    row.insertCell(2).innerHTML = minDuration.value;
-    row.insertCell(3).innerHTML = maxDuration.value;
-    row.insertCell(4).innerHTML = minAmount.value;
-    row.insertCell(5).innerHTML = maxAmount.value;
+    row.insertCell(1).innerHTML = '<input type="text" name="conditionName'+rowCount+'" value="'+conditionName.value+'">';
+    row.insertCell(2).innerHTML = '<input type="text" name="minDuration'+rowCount+'" value="'+minDuration.value+'" >';
+    row.insertCell(3).innerHTML = '<input type="text" name="maxDuration'+rowCount+'" value="'+maxDuration.value+'">';
+    row.insertCell(4).innerHTML = '<input type="text" name="minAmount'+rowCount+'" value="'+minAmount.value+'">';
+    row.insertCell(5).innerHTML = '<input type="text" name="maxAmount'+rowCount+'" value="'+maxAmount.value+'">';
     row.insertCell(6).innerHTML = '<button class="button" onClick="deleteRow(this)">حذف</button>';
     addFooter();
     
@@ -82,7 +82,7 @@ function addFooter() {
         var footer = table.createTFoot();
         var footerRow = footer.insertRow(0);
         var cell = footerRow.insertCell(0);
-        cell.innerHTML = '<button class="button">ثبت</button>';
+        cell.innerHTML = '<input type="submit" class="button" value="ثبت"> <input type="text" name="rowCount" value="'+table.rows.length+'" hidden>';
     }
 }
 

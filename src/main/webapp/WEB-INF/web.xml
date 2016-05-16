@@ -9,8 +9,24 @@
     <servlet-name>RealCustomerController</servlet-name>
     <servlet-class>domainLogic.RealCustomerController</servlet-class>
   </servlet>
-  <servlet-mapping>
+  <servlet>
+    <servlet-name>LoanTypeController</servlet-name>
+    <servlet-class>domainLogic.LoanTypeController</servlet-class>
+  </servlet>
+    <servlet>
+        <servlet-name>GrantConditionController</servlet-name>
+        <servlet-class>domainLogic.GrantConditionController</servlet-class>
+    </servlet>
+    <servlet-mapping>
     <servlet-name>RealCustomerController</servlet-name>
     <url-pattern>/RealCustomerController</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoanTypeController</servlet-name>
+    <url-pattern>/LoanTypeController</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GrantConditionController</servlet-name>
+        <url-pattern>/GrantConditionController</url-pattern>
+    </servlet-mapping>
 </web-app>

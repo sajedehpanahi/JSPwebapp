@@ -15,15 +15,15 @@ public class LoanFileEntity implements Serializable {
     @Column(name = "LOAN_FILE_ID", nullable = false)
     private int loanFileId;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "LOAN_ID", nullable = false)
-    private LoanTypeEntity loanType;
-
     @Column(name = "DURATION", nullable = false)
     private int duration;
 
     @Column(name = "AMOUNT", nullable = false)
     private BigDecimal amount;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "LOAN_ID", nullable = false)
+    private LoanTypeEntity loanType;
 
     @ManyToOne(fetch= FetchType.LAZY )
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)

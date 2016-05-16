@@ -1,5 +1,8 @@
 package dataAccess;
 
+import dataAccess.entities.GrantConditionEntity;
+import dataAccess.entities.LoanFileEntity;
+import dataAccess.entities.LoanTypeEntity;
 import dataAccess.entities.RealCustomerEntity;
 import exceptions.DataNotFoundException;
 import org.hibernate.Criteria;
@@ -9,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 import util.LoggerUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CRUD {
@@ -116,5 +120,47 @@ public class CRUD {
         }
     }
 
+    public  static  void saveLoanType(LoanTypeEntity loanType, ArrayList<GrantConditionEntity> grantConditions)
+    {
+        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
+            session.beginTransaction();
+            session.save(loanType);
+            for(GrantConditionEntity grantCondition : grantConditions){
+                grantCondition.setLoanType(loanType);
+                session.save(grantCondition);
+            }
+            session.getTransaction().commit();
+            LoggerUtil.getLogger().info("Loan Type " + loanType.getLoanName() + " with interest rate " + loanType.getInterestRate() + " successfully created in data base!");
+        } catch (RuntimeException e) {
+            LoggerUtil.getLogger().info("Creating Loan Type " + loanType.getLoanName() + " with interest rate " + loanType.getInterestRate() + " failed!");
+            e.printStackTrace();
+        }
+    }
+
+/*    public  static  void saveGrantCondition(GrantConditionEntity grantCondition){
+        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
+            session.beginTransaction();
+            session.save(grantCondition);
+            session.getTransaction().commit();
+            LoggerUtil.getLogger().info("Grant condition " + grantCondition.getGrantName() + " with amount range [" + grantCondition.getMinAmount() + "-" + grantCondition.getMaxAmount() + "] and duration range [" + grantCondition.getMinDuration() + "-" + grantCondition.getMaxDuration() + "] successfully created in data base!");
+        } catch (RuntimeException e) {
+            LoggerUtil.getLogger().info("Creating Grant condition " + grantCondition.getGrantName() + " with amount range [" + grantCondition.getMinAmount() + "-" + grantCondition.getMaxAmount() + "] and duration range [" + grantCondition.getMinDuration() + "-" + grantCondition.getMaxDuration() + "]  failed!");
+            e.printStackTrace();
+        }
+    }*/
+
+    public static void saveLoanFile(LoanFileEntity loanFile, /*LoanTypeEntity loanType,*/ RealCustomerEntity realCustomer){
+        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
+            session.beginTransaction();
+            //loanFile.setLoanType(loanType);
+            loanFile.setRealCustomer(realCustomer);
+            session.save(loanFile);
+            session.getTransaction().commit();
+            LoggerUtil.getLogger().info("Loan File for customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " with loan type " + loanFile.getLoanType().getLoanName() + "successfully saved in data base with id #" + loanFile.getLoanFileId());
+        } catch (RuntimeException e) {
+            LoggerUtil.getLogger().info("Creating loan File for customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " with loan type " + loanFile.getLoanType().getLoanName() + " failed!");
+            e.printStackTrace();
+        }
+    }
 
 }

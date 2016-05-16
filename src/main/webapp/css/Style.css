@@ -229,7 +229,15 @@ input[type="text"]
     font-family: farsiFont;
 }
 
+/*
 input[type="submit"]
 {
     width: 150px;
+}*/
+
+#grantConditionsTable input[type = "text"]
+{
+    border: none;
+    background: transparent;
+    text-align: center;
 }

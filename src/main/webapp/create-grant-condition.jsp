@@ -17,9 +17,22 @@
             <div class="box-top"></div>
             <div class="box-in">
                 <br>
-                <%--TODO retrive customer number in retrive customer number jsp--%>
-                    <h3>لطفا مشخصات شرط اعطای مورد نظر را وارد کنید</h3>
-                    <br>
+                <table>
+                    <tr>
+                        <td>نام تسهیلات</td>
+                        <td><%=request.getParameter("loanName")%></td>
+                    </tr>
+                    <tr>
+                        <td>نرخ سود تسهیلات</td>
+                        <td><%=request.getParameter("interestRate")%></td>
+                    </tr>
+                </table>
+                <a href="create-loan-type.jsp" class=form>تصحیح</a>
+                <br>
+                <hr>
+                <br>
+                <h3>لطفا مشخصات شرط اعطای مورد نظر را وارد کنید</h3>
+                <br>
                     <table>
                         <tr>
                             <td>نام*</td>
@@ -43,11 +56,15 @@
                         </tr>
                     </table>
                     <input class="button" type="submit" value="اضافه" onclick="addRow()">
-                <br>
-                <hr>
-                <br>
-                <table class="result-table" id="grantConditionsTable"></table>
-                <br>
+                    <br>
+                    <hr>
+                    <br>
+                <form action="GrantConditionController" method="get">
+                    <input type="hidden" name="loanName" value="<%=request.getParameter("loanName")%>">
+                    <input type="hidden" name="interestRate" value="<%=request.getParameter("interestRate")%>">
+                    <table class="result-table" id="grantConditionsTable"></table>
+                    <br>
+                </form>
             </div>
             <div class="box-bottom"></div>
             <div class="cleaner">&nbsp;</div>
