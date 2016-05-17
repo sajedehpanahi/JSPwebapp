@@ -1,8 +1,10 @@
-package domainLogic;
+package presentation;
 
 import dataAccess.CRUD;
+import domainLogic.GrantConditionLogic;
 import domainLogic.domainObjects.GrantConditionObject;
 import domainLogic.domainObjects.LoanTypeObject;
+import exceptions.ConditionRangeException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +24,6 @@ public class GrantConditionController extends HttpServlet {
 
             int rowCount = Integer.parseInt(request.getParameter("rowCount"));
             ArrayList<GrantConditionObject> grantConditions = new ArrayList<GrantConditionObject>();
-
             for (int i = 1; i < rowCount - 1; i++) {
                 GrantConditionObject grantConditionObject = new GrantConditionObject();
                 grantConditionObject.setGrantName(request.getParameter("conditionName" + i));
@@ -32,13 +33,12 @@ public class GrantConditionController extends HttpServlet {
                 grantConditionObject.setMaxAmount(new BigDecimal((request.getParameter("maxAmount" + i))));
                 grantConditions.add(grantConditionObject);
             }
-            LoanTypeObject loanType = new LoanTypeObject(loanName, interestRate);
-            CRUD.saveLoanType(LoanTypeObject.toLoanTypeEntity(loanType), GrantConditionObject.toLoanTypeEntity(grantConditions));
+            GrantConditionLogic.create( new LoanTypeObject(request.getParameter("loanName"), Float.parseFloat(request.getParameter("interestRate"))),grantConditions);
 
             request.setAttribute("header", "عملیات موفق");
             request.setAttribute("text", "نوع تسهیلات جدید با موفقیت ثبت شد!");
             request.setAttribute("url", "create-loan-type.jsp");
-        }catch (Exception e){
+        }catch (ConditionRangeException e){
             request.setAttribute("header", "عملیات ناموفق");
             request.setAttribute("text", " خطا در ذخیره نوع تسهیلات. لطفا مجددا تلاش کنید!" + "\n" + e.getMessage());
             request.setAttribute("url", "create-loan-type.jsp");

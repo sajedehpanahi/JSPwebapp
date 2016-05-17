@@ -6,6 +6,7 @@ public class RealCustomerObject {
 
     private String firstName;
     private String lastName;
+    private String fullName;
     private String fatherName;
     private String dateOfBirth;
     private String nationalCode;
@@ -56,6 +57,10 @@ public class RealCustomerObject {
         return customerId;
     }
 
+    public void setFullName(String firstName, String lastName) {
+        this.fullName = firstName + " " + lastName;
+    }
+
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
@@ -69,6 +74,7 @@ public class RealCustomerObject {
         this.fatherName = fatherName;
         this.dateOfBirth = dateOfBirth;
         this.nationalCode = nationalCode;
+        this.setFullName(firstName, lastName);
     }
 
     /*

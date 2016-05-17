@@ -102,8 +102,8 @@ public class RealCustomerController extends HttpServlet {
             request.setAttribute("url","create-real-customer.jsp");
         } catch (FieldRequiredException | NationalCodeFormatException e) {
             request.setAttribute("header","عملیات ناموفق");
-            request.setAttribute("text","خطا در به روز زسانی مشتری ایجاد شده است." + "\n" + e.getMessage());
-            request.setAttribute("url","retrieve-real-customer.jsp");
+            request.setAttribute("text","خطا در ثبت مشتری جدیدایجاد شده است." + "\n" + e.getMessage());
+            request.setAttribute("url","create-real-customer.jsp");
         }finally {
             try {
                 getServletConfig().getServletContext().getRequestDispatcher("/info-page.jsp").forward(request,response);

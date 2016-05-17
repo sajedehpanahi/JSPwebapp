@@ -12,7 +12,7 @@ public class LoanTypeEntity implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "LOAN_ID")
-    private int loanId;
+    private Integer loanId;
 
     @Column(name = "LOAN_NAME", nullable = false)
     private String loanName;
@@ -58,11 +58,11 @@ public class LoanTypeEntity implements Serializable {
         this.grantConditions = grantConditions;
     }
 
-    public int getLoanId() {
+    public Integer getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(int loanId) {
+    public void setLoanId(Integer loanId) {
         this.loanId = loanId;
     }
 

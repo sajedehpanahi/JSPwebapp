@@ -20,8 +20,8 @@
                 <br>
                 <a href="create-real-customer.jsp" class="form">تعریف مشتری جدید</a>
                 <a href="retrieve-real-customer.jsp" class="form">جستجوی مشتری فعلی</a>
-                <a href="create-loan-file.jsp" class="form">تشکیل پرونده تسهیلاتی</a>
                 <a href="create-loan-type.jsp" class="form">تعریف نوع تسهیلات</a>
+                <a href="LoanFileController?action=first-run" class="form">تشکیل پرونده تسهیلاتی</a>
             </div>
             <div class="box-bottom"></div>
         </div>

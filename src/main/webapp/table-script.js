@@ -17,11 +17,11 @@ function addRow() {
     rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     row.insertCell(0).innerHTML = (rowCount).toString();
-    row.insertCell(1).innerHTML = '<input type="text" name="conditionName'+rowCount+'" value="'+conditionName.value+'">';
-    row.insertCell(2).innerHTML = '<input type="text" name="minDuration'+rowCount+'" value="'+minDuration.value+'" >';
-    row.insertCell(3).innerHTML = '<input type="text" name="maxDuration'+rowCount+'" value="'+maxDuration.value+'">';
-    row.insertCell(4).innerHTML = '<input type="text" name="minAmount'+rowCount+'" value="'+minAmount.value+'">';
-    row.insertCell(5).innerHTML = '<input type="text" name="maxAmount'+rowCount+'" value="'+maxAmount.value+'">';
+    row.insertCell(1).innerHTML = '<input type="text" name="conditionName'+rowCount+'" value="'+conditionName.value+'" readonly>';
+    row.insertCell(2).innerHTML = '<input type="text" name="minDuration'+rowCount+'" value="'+minDuration.value+'" readonly>';
+    row.insertCell(3).innerHTML = '<input type="text" name="maxDuration'+rowCount+'" value="'+maxDuration.value+'" readonly>';
+    row.insertCell(4).innerHTML = '<input type="text" name="minAmount'+rowCount+'" value="'+minAmount.value+'" readonly>';
+    row.insertCell(5).innerHTML = '<input type="text" name="maxAmount'+rowCount+'" value="'+maxAmount.value+'" readonly>';
     row.insertCell(6).innerHTML = '<button class="button" onClick="deleteRow(this)">حذف</button>';
     addFooter();
     

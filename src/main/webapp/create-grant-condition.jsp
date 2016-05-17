@@ -1,3 +1,4 @@
+<%@ page import="domainLogic.domainObjects.LoanTypeObject" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -18,13 +19,16 @@
             <div class="box-in">
                 <br>
                 <table>
+                    <%
+                        LoanTypeObject loanTypeObject = (LoanTypeObject) request.getAttribute("loanTypeObject");
+                    %>
                     <tr>
                         <td>نام تسهیلات</td>
-                        <td><%=request.getParameter("loanName")%></td>
+                        <td><%=loanTypeObject.getLoanName()%></td>
                     </tr>
                     <tr>
                         <td>نرخ سود تسهیلات</td>
-                        <td><%=request.getParameter("interestRate")%></td>
+                        <td><%=loanTypeObject.getInterestRate()%></td>
                     </tr>
                 </table>
                 <a href="create-loan-type.jsp" class=form>تصحیح</a>
@@ -62,6 +66,7 @@
                 <form action="GrantConditionController" method="get">
                     <input type="hidden" name="loanName" value="<%=request.getParameter("loanName")%>">
                     <input type="hidden" name="interestRate" value="<%=request.getParameter("interestRate")%>">
+                    <input type="hidden" name="loanTypeObject" value="${loanTypeObject}">
                     <table class="result-table" id="grantConditionsTable"></table>
                     <br>
                 </form>

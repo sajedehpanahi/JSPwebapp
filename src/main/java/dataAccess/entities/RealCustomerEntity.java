@@ -31,7 +31,6 @@ public class RealCustomerEntity extends CustomerEntity implements Serializable {
     private String nationalCode;
 
     @OneToMany(mappedBy = "realCustomer" , cascade = {CascadeType.ALL  })
-//    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     private Set<LoanFileEntity> loanFiles = new HashSet<LoanFileEntity>(0);
 
     public RealCustomerEntity(Integer customerId, String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode) {

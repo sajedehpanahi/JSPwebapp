@@ -21,11 +21,11 @@ public class LoanFileEntity implements Serializable {
     @Column(name = "AMOUNT", nullable = false)
     private BigDecimal amount;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne//fetch= FetchType.LAZY)
     @JoinColumn(name = "LOAN_ID", nullable = false)
     private LoanTypeEntity loanType;
 
-    @ManyToOne(fetch= FetchType.LAZY )
+    @ManyToOne//(fetch= FetchType.LAZY )
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)
 //    @ForeignKey(name="FK_PARENT")
     private RealCustomerEntity realCustomer;
@@ -47,6 +47,11 @@ public class LoanFileEntity implements Serializable {
     }
 
     public LoanFileEntity() {
+    }
+
+    public LoanFileEntity(BigDecimal amount, int duration) {
+        this.duration = duration;
+        this.amount = amount;
     }
 
     public LoanFileEntity(LoanTypeEntity loanType, int duration, BigDecimal amount) {

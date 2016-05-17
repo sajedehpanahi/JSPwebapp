@@ -80,18 +80,6 @@ public class CRUD {
         return criteria;
     }
 
-    public static void updateRealCustomer(RealCustomerEntity realCustomer) {
-        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
-            session.beginTransaction();
-            session.update(realCustomer);
-            session.getTransaction().commit();
-            LoggerUtil.getLogger().info("Real Customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + "with customer #" + realCustomer.getCustomerId() + " successfully updated in data base!");
-        } catch (RuntimeException e) {
-            LoggerUtil.getLogger().info("Updating real Customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " failed!");
-            e.printStackTrace();
-        }
-    }
-
     public static void deleteRealCustomerById(int id) {
 
         try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
@@ -137,30 +125,81 @@ public class CRUD {
         }
     }
 
-/*    public  static  void saveGrantCondition(GrantConditionEntity grantCondition){
+    public static void updateRealCustomer(RealCustomerEntity realCustomer) {
         try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
             session.beginTransaction();
-            session.save(grantCondition);
+            session.update(realCustomer);
             session.getTransaction().commit();
-            LoggerUtil.getLogger().info("Grant condition " + grantCondition.getGrantName() + " with amount range [" + grantCondition.getMinAmount() + "-" + grantCondition.getMaxAmount() + "] and duration range [" + grantCondition.getMinDuration() + "-" + grantCondition.getMaxDuration() + "] successfully created in data base!");
+            LoggerUtil.getLogger().info("Real Customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + "with customer #" + realCustomer.getCustomerId() + " successfully updated in data base!");
         } catch (RuntimeException e) {
-            LoggerUtil.getLogger().info("Creating Grant condition " + grantCondition.getGrantName() + " with amount range [" + grantCondition.getMinAmount() + "-" + grantCondition.getMaxAmount() + "] and duration range [" + grantCondition.getMinDuration() + "-" + grantCondition.getMaxDuration() + "]  failed!");
-            e.printStackTrace();
-        }
-    }*/
-
-    public static void saveLoanFile(LoanFileEntity loanFile, /*LoanTypeEntity loanType,*/ RealCustomerEntity realCustomer){
-        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
-            session.beginTransaction();
-            //loanFile.setLoanType(loanType);
-            loanFile.setRealCustomer(realCustomer);
-            session.save(loanFile);
-            session.getTransaction().commit();
-            LoggerUtil.getLogger().info("Loan File for customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " with loan type " + loanFile.getLoanType().getLoanName() + "successfully saved in data base with id #" + loanFile.getLoanFileId());
-        } catch (RuntimeException e) {
-            LoggerUtil.getLogger().info("Creating loan File for customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " with loan type " + loanFile.getLoanType().getLoanName() + " failed!");
+            LoggerUtil.getLogger().info("Updating real Customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " failed!");
             e.printStackTrace();
         }
     }
 
+    public static void saveLoanFile(LoanFileEntity loanFile, LoanTypeEntity loanType, RealCustomerEntity realCustomer){
+        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
+            session.beginTransaction();
+            loanFile.setLoanType(loanType);
+            loanFile.setRealCustomer(realCustomer);
+            session.save(loanFile);
+            session.getTransaction().commit();
+            LoggerUtil.getLogger().info("Loan File for customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " with loan type " + loanType.getLoanName() + "successfully saved in data base with id #" + loanFile.getLoanFileId());
+        } catch (RuntimeException e) {
+            LoggerUtil.getLogger().info("Creating loan File for customer " + realCustomer.getFirstName() + " " + realCustomer.getLastName() + " with loan type " + loanType.getLoanName() + " failed!");
+            e.printStackTrace();
+        }
+    }
+
+    public static List<LoanTypeEntity> retrieveAllLoanTypes()
+            throws DataNotFoundException {
+
+        List<LoanTypeEntity> loanTypeEntities;
+        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
+            //Criteria criteria = session.createCriteria(LoanTypeEntity.class);
+            session.beginTransaction();
+            loanTypeEntities = session.createCriteria(LoanTypeEntity.class).list();
+            LoggerUtil.getLogger().info("Loan type(s) successfully retrieved from data base!");
+        } catch (RuntimeException e) {
+            LoggerUtil.getLogger().info("retrieving loan type(s) from data base failed!");
+            e.printStackTrace();
+            throw new DataNotFoundException("هیچ نوع تسهیلاتی ثبت نشده است!");
+        }
+        return loanTypeEntities;
+    }
+
+    public static LoanTypeEntity retrieveLoanTypeById(Integer loanTypeId)
+            throws DataNotFoundException {
+
+        LoanTypeEntity loanTypeEntity;
+        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
+            session.beginTransaction();
+            loanTypeEntity = session.get(LoanTypeEntity.class, loanTypeId);
+            session.getTransaction().commit();
+            LoggerUtil.getLogger().info("Loan type " + loanTypeEntity.getLoanName() + "with loan Id #" + loanTypeEntity.getLoanId() + " successfully retrieved from data base!");
+        } catch (RuntimeException e) {
+            LoggerUtil.getLogger().info("retrieving loan type with loan Id #" + loanTypeId +" failed!");
+            e.printStackTrace();
+            throw new DataNotFoundException("نوع تسهیلات با شماره " + loanTypeId + "وجود ندارد.");
+        }
+        return loanTypeEntity;
+    }
+
+    public static List<GrantConditionEntity> retrieveLoanTypeConditions(Integer loanId)
+            throws DataNotFoundException {
+        List<GrantConditionEntity> grantConditionEntities;
+        try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory(); Session session = sessionFactory.openSession();) {
+            session.beginTransaction();
+            Criteria criteria =session.createCriteria(GrantConditionEntity.class);
+            criteria.add(Restrictions.eq("loanType.loanId", loanId));
+            grantConditionEntities = criteria.list();
+            //grantConditionEntities = session.createCriteria(GrantConditionEntity.class).add(Restrictions.eq("loanType", loanId)).list();
+            LoggerUtil.getLogger().info("Grant condition(s) successfully retrieved from data base!");
+        } catch (RuntimeException e) {
+            LoggerUtil.getLogger().info("retrieving grant condition(s) from data base failed!");
+            e.printStackTrace();
+            throw new DataNotFoundException("خطا در بازیابی شروط اعطا!");
+        }
+        return grantConditionEntities;
+    }
 }

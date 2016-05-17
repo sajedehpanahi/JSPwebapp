@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class LoanTypeObject {
 
-    private int loanId;
+    private Integer loanId;
     private String loanName;
     private float interestRate;
     private List<GrantConditionObject> grantConditions = new ArrayList<GrantConditionObject>();
@@ -44,11 +44,11 @@ public class LoanTypeObject {
         this.interestRate = interestRate;
     }
 
-    public int getLoanId() {
+    public Integer getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(int loanId) {
+    public void setLoanId(Integer loanId) {
         this.loanId = loanId;
     }
 
@@ -60,8 +60,20 @@ public class LoanTypeObject {
         this.grantConditions = grantConditions;
     }
 
-    public static  LoanTypeEntity toLoanTypeEntity( LoanTypeObject loanTypeObject){
-        return new LoanTypeEntity(loanTypeObject.loanName, loanTypeObject.interestRate);
+    public  LoanTypeEntity toLoanTypeEntity(){
+        LoanTypeEntity loanTypeEntity =  new LoanTypeEntity(this.loanName, this.interestRate);
+        if(this.loanId != null){
+            loanTypeEntity.setLoanId(this.loanId);
+        }
+        return loanTypeEntity;
+    }
+
+    public static LoanTypeObject convert(LoanTypeEntity loanTypeEntity) {
+        LoanTypeObject loanTypeObject = new LoanTypeObject();
+        loanTypeObject.setLoanName(loanTypeEntity.getLoanName());
+        loanTypeObject.setInterestRate(loanTypeEntity.getInterestRate());
+        loanTypeObject.setLoanId(loanTypeEntity.getLoanId());
+        return loanTypeObject;
     }
 
 /*    public static Set<LoanTypeEntity> toLoanTypeEntity(ArrayList<LoanTypeObject> loanTypeObjects){

@@ -11,15 +11,15 @@
     </servlet>
     <servlet>
         <servlet-name>LoanTypeController</servlet-name>
-        <servlet-class>domainLogic.LoanTypeController</servlet-class>
+        <servlet-class>presentation.LoanTypeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GrantConditionController</servlet-name>
-        <servlet-class>domainLogic.GrantConditionController</servlet-class>
+        <servlet-class>presentation.GrantConditionController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoanFileController</servlet-name>
-        <servlet-class>domainLogic.LoanFileController</servlet-class>
+        <servlet-class>presentation.LoanFileController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RealCustomerController</servlet-name>

@@ -93,6 +93,9 @@ public class GrantConditionEntity implements Serializable {
         return loanType;
     }
 
+    public GrantConditionEntity() {
+    }
+
     public void setLoanType(LoanTypeEntity loanType) {
         this.loanType = loanType;
     }

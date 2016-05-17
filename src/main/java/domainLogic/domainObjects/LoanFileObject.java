@@ -1,5 +1,8 @@
 package domainLogic.domainObjects;
 
+import dataAccess.entities.LoanFileEntity;
+import dataAccess.entities.LoanTypeEntity;
+
 import java.math.BigDecimal;
 
 public class LoanFileObject {
@@ -57,5 +60,12 @@ public class LoanFileObject {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public LoanFileEntity toLoanFileEntity(){
+        if(loanType != null) {
+            return new LoanFileEntity(this.loanType.toLoanTypeEntity(), this.duration, this.amount);
+        }
+        return  new LoanFileEntity(this.amount, this.duration);
     }
 }
